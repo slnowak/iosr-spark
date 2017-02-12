@@ -1,5 +1,4 @@
 from flask import Flask
-from flask import request
 from flask import jsonify
 
 from queries import AirportQueries
@@ -10,8 +9,7 @@ queries = AirportQueries()
 
 @app.route("/airports")
 def most_popular_queries():
-    limit = int(request.args.get('limit')) if request.args.get('limit') else 5
-    return jsonify(queries.most_popular_airports(limit))
+    return jsonify(queries.most_popular_airports())
 
 
 if __name__ == "__main__":

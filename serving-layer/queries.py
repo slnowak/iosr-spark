@@ -1,12 +1,8 @@
+import redis
+
 class AirportQueries:
     def __init__(self):
-        pass
+        self.db = redis.StrictRedis(host='localhost', port=6379, db=0)
 
-    def most_popular_airports(self, n):
-        return [
-            (u'ATL', 238511),
-            (u'ORD', 234963),
-            (u'DFW', 166071),
-            (u'DEN', 137326),
-            (u'LAX', 118741)
-        ]
+    def most_popular_airports(self):
+        return self.db.get('most_popular_airports')
