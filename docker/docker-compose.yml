@@ -6,12 +6,14 @@ services:
       - "9092:9092"
       - "2181:2181"
     environment:
-      ADVERTISED_HOST: localhost
+      ADVERTISED_HOST: 192.168.1.106
       ADVERTISED_PORT: 9092
+
   redis:
     image: redis
     ports:
       - "6379:6379"
+
   spark-master:
     image: gettyimages/spark
     command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
@@ -63,3 +65,11 @@ services:
     volumes:
       - ./conf/worker:/conf
       - ./data:/tmp/data
+
+  batch-layer:
+    build: ../spark-consumer
+
+  serving-layer:
+    build: ../serving-layer
+    ports:
+      - "5000:5000"

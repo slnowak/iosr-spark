@@ -17,8 +17,8 @@ def feed_kafka(flight_lines, kafka_servers, kafka_topic):
 
 if __name__ == '__main__':
     DEFAULT_KAFKA_TOPIC_NAME = 'flights'
-    DEFAULT_DATA_FILE = 'DelayedFlights.csv'
-    DEFAULT_KAFKA_SERVERS = 'localhost:9092'
+    DEFAULT_DATA_FILE = 'sample'
+    DEFAULT_KAFKA_SERVERS = '192.168.1.106:9092'
 
     flights = read_flights_file(DEFAULT_DATA_FILE)
     feed_kafka(flights, DEFAULT_KAFKA_SERVERS, DEFAULT_KAFKA_TOPIC_NAME)
