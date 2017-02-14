@@ -1,4 +1,4 @@
-import json
+import ast
 
 import redis
 
@@ -11,7 +11,7 @@ class AirportQueries:
         return self.__json_or_none(self.db.get('most_popular_airports'))
 
     def days_of_week_by_on_time_arrival(self):
-        return self.__json_or_none(None)
+        return self.__json_or_none(self.db.get('days_of_week'))
 
     def carriers_by_departure_performance(self):
         return self.__json_or_none(None)
@@ -21,4 +21,4 @@ class AirportQueries:
 
     @staticmethod
     def __json_or_none(value):
-        return None if value is None else json.loads(value)
+        return None if value is None else ast.literal_eval(value)
