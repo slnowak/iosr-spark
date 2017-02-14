@@ -1,5 +1,7 @@
-import redis
 import json
+
+import redis
+
 
 class AirportQueries:
     def __init__(self, redis_cfg):
@@ -8,5 +10,15 @@ class AirportQueries:
     def most_popular_airports(self):
         return self.__json_or_none(self.db.get('most_popular_airports'))
 
-    def __json_or_none(self, value):
+    def days_of_week_by_on_time_arrival(self):
+        return self.__json_or_none(None)
+
+    def carriers_by_departure_performance(self):
+        return self.__json_or_none(None)
+
+    def mean_arrival_delays(self):
+        return self.__json_or_none(None)
+
+    @staticmethod
+    def __json_or_none(value):
         return None if value is None else json.loads(value)
