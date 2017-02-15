@@ -16,7 +16,7 @@ class AirportQueries:
         return self.__json_or_none(self.db.get('carriers_by_departure'))
 
     def mean_arrival_delays(self):
-        return self.__json_or_none(None)
+        return self.__json_or_none(self.db.get('mean_arrival_delays'))
 
     @staticmethod
     def __json_or_none(value):
